@@ -1,6 +1,7 @@
 ﻿using SF13_2016_SalonNamestaja.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,19 +21,40 @@ namespace SF13_2016_SalonNamestaja
     /// </summary>
     public partial class Main : Window
     {
-        public Main()
+        private string tipKorisnika;
+        public Main(string tipKorisnika)
         {
+            this.tipKorisnika = tipKorisnika;
             InitializeComponent();
 
-            comboPrikazTabela.Items.Add("Prodaja");
-            comboPrikazTabela.Items.Add("Namestaj");
-            comboPrikazTabela.Items.Add("Akcijske prodaje");
-            comboPrikazTabela.Items.Add("Korisnici");
+            if (tipKorisnika == "prodavac") {
 
-            Kolekcije.lstKorisnici.Add(new Korisnik(1, "Petar", "Petrovic", "petar", "petrovic", "prodavac", false));
-            Kolekcije.lstNamestaj.Add(new Namestaj(1, "Krevet No3", "SDSA432", 23444, 45, "kreveti", false));
+                comboPrikazTabela.Items.Add("Namestaj");
+                comboPrikazTabela.Items.Add("Prodaje");
 
-            dataGrid.ItemsSource = Kolekcije.lstProdaja;
+                buttonUpisProdaje.IsEnabled = true;
+                btUpis.IsEnabled = false;
+                btIzmena.IsEnabled = false;
+                btBrisanje.IsEnabled = false;
+
+            }
+
+            if (tipKorisnika == "administrator") {
+
+                comboPrikazTabela.Items.Add("Namestaj");
+                comboPrikazTabela.Items.Add("Prodaje");
+                comboPrikazTabela.Items.Add("Akcijske prodaje");
+                comboPrikazTabela.Items.Add("Korisnici");
+
+                buttonUpisProdaje.IsEnabled = false;
+
+            }
+
+
+
+
+            dataGrid.ItemsSource = Kolekcije.lstNamestaj;
+
         }
 
         private void btUpis_Click(object sender, RoutedEventArgs e)
@@ -155,14 +177,121 @@ namespace SF13_2016_SalonNamestaja
 
         private void comboPrikazTabela_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (comboPrikazTabela.SelectedItem.ToString() == "Prodaja")
+            if (comboPrikazTabela.SelectedItem.ToString() != "Prodaje") {
+
+                if (tipKorisnika == "prodavac") {
+
+                    buttonUpisProdaje.IsEnabled = false;
+                    btUpis.IsEnabled = false;
+                    btIzmena.IsEnabled = false;
+                    btBrisanje.IsEnabled = false;
+                }
+                if (tipKorisnika == "administrator")
+                {
+
+                    buttonUpisProdaje.IsEnabled = false;
+                    btUpis.IsEnabled = true;
+                    btIzmena.IsEnabled = true;
+                    btBrisanje.IsEnabled = true;
+                }
+            }
+
+            if (comboPrikazTabela.SelectedItem.ToString() != "Namestaj") {
+                if (tipKorisnika == "prodavac") {
+                    buttonUpisProdaje.IsEnabled = false;
+                    btUpis.IsEnabled = false;
+                    btIzmena.IsEnabled = false;
+                    btBrisanje.IsEnabled = false;
+                }
+                if (tipKorisnika == "administrator")
+                {
+                    buttonUpisProdaje.IsEnabled = false;
+                    btUpis.IsEnabled = true;
+                    btIzmena.IsEnabled = true;
+                    btBrisanje.IsEnabled = true;
+                }
+            }
+
+            if (comboPrikazTabela.SelectedItem.ToString() == "Prodaje")
             {
                 dataGrid.ItemsSource = Kolekcije.lstProdaja;
                 dataGrid.Items.Refresh();
+                if (tipKorisnika == "prodavac")
+                {
+                    buttonUpisProdaje.IsEnabled = false;
+                    btUpis.IsEnabled = false;
+                    btIzmena.IsEnabled = false;
+                    btBrisanje.IsEnabled = false;
+                }
+                if (tipKorisnika == "administrator") {
+
+                    buttonUpisProdaje.IsEnabled = false;
+                    btUpis.IsEnabled = false;
+                    btIzmena.IsEnabled = false;
+                    btBrisanje.IsEnabled = false;
+                }
             }
             if (comboPrikazTabela.SelectedItem.ToString() == "Namestaj")
             {
                 dataGrid.ItemsSource = Kolekcije.lstNamestaj;
+                dataGrid.Items.Refresh();
+                if (tipKorisnika == "prodavac")
+                {
+                    buttonUpisProdaje.IsEnabled = true;
+                    btUpis.IsEnabled = false;
+                    btIzmena.IsEnabled = false;
+                    btBrisanje.IsEnabled = false;
+                }
+                if (tipKorisnika == "administrator")
+                {
+                    buttonUpisProdaje.IsEnabled = false;
+                    btUpis.IsEnabled = true;
+                    btIzmena.IsEnabled = true;
+                    btBrisanje.IsEnabled = true;
+                }
+            }
+            if (comboPrikazTabela.SelectedItem.ToString() == "Akcijske prodaje")
+            {
+                dataGrid.ItemsSource = Kolekcije.lstAkcijskaProdaja;
+                dataGrid.Items.Refresh();
+            }
+            if (comboPrikazTabela.SelectedItem.ToString() == "Korisnici")
+            {
+                dataGrid.ItemsSource = Kolekcije.lstKorisnici;
+                dataGrid.Items.Refresh();
+            }
+        }
+
+        private void buttonUpisProdaje_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (Kolekcije.lstNamestaj.Count > 0 && dataGrid.SelectedIndex != -1)
+            {
+
+                Namestaj namestaj = (Namestaj)dataGrid.SelectedItem;
+
+                FormaProdaja frm = new FormaProdaja(namestaj);
+                //izmenaNamestaj.Owner = this;
+                frm.ShowDialog();
+
+                //dataGrid.Items.Refresh();
+
+            }
+
+        }
+
+        private void btPrikaziSve_Click(object sender, RoutedEventArgs e)
+        {
+            txtPretraga.Text = "";
+
+            if (comboPrikazTabela.SelectedItem.ToString() == "Namestaj")
+            {
+                dataGrid.ItemsSource = Kolekcije.lstNamestaj;
+                dataGrid.Items.Refresh();
+            }
+            if (comboPrikazTabela.SelectedItem.ToString() == "Prodaje")
+            {
+                dataGrid.ItemsSource = Kolekcije.lstProdaja;
                 dataGrid.Items.Refresh();
             }
             if (comboPrikazTabela.SelectedItem.ToString() == "Akcijske prodaje")
@@ -174,6 +303,83 @@ namespace SF13_2016_SalonNamestaja
             {
                 dataGrid.ItemsSource = Kolekcije.lstKorisnici;
                 dataGrid.Items.Refresh();
+            }
+        }
+
+        private void btPretrazi_Click(object sender, RoutedEventArgs e)
+        {
+            ObservableCollection<Namestaj> lstNamestajFilter = new ObservableCollection<Namestaj>();
+            ObservableCollection<Prodaja> lstProdajaFilter = new ObservableCollection<Prodaja>();
+            ObservableCollection<AkcijskaProdaja> lstAkcijskaProdajaFilter = new ObservableCollection<AkcijskaProdaja>();
+            ObservableCollection<Korisnik> lstKorisniciFilter = new ObservableCollection<Korisnik>();
+
+            if (txtPretraga.Text != null && !txtPretraga.Text.Equals("")) {
+
+                if (comboPrikazTabela.SelectedItem.ToString() == "Namestaj")
+                {
+                    foreach (Namestaj nam in Kolekcije.lstNamestaj) {
+
+                        if (nam.TipNamestaja == txtPretraga.Text ||
+                            nam.Sifra == txtPretraga.Text ||
+                            nam.Naziv == txtPretraga.Text) {
+
+                            lstNamestajFilter.Add(nam);
+                        }
+                    }
+
+                    if (lstNamestajFilter.Count > 0)
+                    {
+                        dataGrid.ItemsSource = lstNamestajFilter;
+                        dataGrid.Items.Refresh();
+                    }
+                }
+
+                if (comboPrikazTabela.SelectedItem.ToString() == "Prodaje")
+                {
+
+                    foreach (Prodaja prod in Kolekcije.lstProdaja) {
+
+                        if (prod.ImePrezimeKupca == txtPretraga.Text || prod.BrojRacuna == txtPretraga.Text) {
+
+                            lstProdajaFilter.Add(prod);
+                        }
+                    }
+                    if (lstProdajaFilter.Count > 0)
+                    {
+                        dataGrid.ItemsSource = lstProdajaFilter;
+                        dataGrid.Items.Refresh();
+                    }
+                }
+                if (comboPrikazTabela.SelectedItem.ToString() == "Akcijske prodaje")
+                {
+
+                    foreach (AkcijskaProdaja akc in Kolekcije.lstAkcijskaProdaja) {
+
+                        if (akc.DatumPocetka <= DateTime.Now && akc.DatumZavrsetka >= DateTime.Now) {
+                            lstAkcijskaProdajaFilter.Add(akc);
+                        }
+                    }
+                    if (lstAkcijskaProdajaFilter.Count > 0)
+                    {
+                        dataGrid.ItemsSource = lstAkcijskaProdajaFilter;
+                        dataGrid.Items.Refresh();
+                    }
+                }
+                if (comboPrikazTabela.SelectedItem.ToString() == "Korisnici")
+                {
+                    foreach (Korisnik k in Kolekcije.lstKorisnici) {
+
+                        if (k.Ime == txtPretraga.Text || k.Prezime == txtPretraga.Text || k.KorisnickoIme == txtPretraga.Text) {
+
+                            lstKorisniciFilter.Add(k);
+                        }
+                    }
+                    if (lstKorisniciFilter.Count > 0)
+                    {
+                        dataGrid.ItemsSource = lstKorisniciFilter;
+                        dataGrid.Items.Refresh();
+                    }
+                }
             }
         }
     }

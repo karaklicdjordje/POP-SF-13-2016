@@ -13,5 +13,10 @@
         <Button x:Name="btUpis" Content="Upis" HorizontalAlignment="Left" Margin="220,337,0,0" VerticalAlignment="Top" Width="75" Click="btUpis_Click"/>
         <Button x:Name="btIzmena" Content="Izmena" HorizontalAlignment="Left" Margin="322,337,0,0" VerticalAlignment="Top" Width="75" Click="btIzmena_Click"/>
         <Button x:Name="btBrisanje" Content="Brisanje" HorizontalAlignment="Left" Margin="424,337,0,0" VerticalAlignment="Top" Width="75" Click="btBrisanje_Click"/>
+        <Button x:Name="buttonUpisProdaje" Content="Upis prodaje" HorizontalAlignment="Left" Margin="21,337,0,0" VerticalAlignment="Top" Width="84" Click="buttonUpisProdaje_Click"/>
+        <Label Content="Pretraga:" HorizontalAlignment="Left" Margin="295,26,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtPretraga" HorizontalAlignment="Left" Height="23" Margin="357,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"/>
+        <Button x:Name="btPretrazi" Content="Pretrazi" HorizontalAlignment="Left" Margin="499,29,0,0" VerticalAlignment="Top" Width="75" Click="btPretrazi_Click"/>
+        <Button x:Name="btPrikaziSve" Content="Prikazi sve" HorizontalAlignment="Left" Margin="604,29,0,0" VerticalAlignment="Top" Width="74" Click="btPrikaziSve_Click"/>
     </Grid>
 </Window>

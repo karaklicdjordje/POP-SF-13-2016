@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SF13_2016_SalonNamestaja.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,13 +24,42 @@ namespace SF13_2016_SalonNamestaja
         public MainWindow()
         {
             InitializeComponent();
+
+            Kolekcije.lstKorisnici.Add(new Korisnik(1, "Petar", "Petrovic", "petar", "petrovic", "prodavac", false));
+            Kolekcije.lstKorisnici.Add(new Korisnik(2, "Nikola", "Nikolic", "nikola", "nikolic", "administrator", false));
+
+            Kolekcije.lstNamestaj.Add(new Namestaj(1, "Krevet No3", "12", 23444, 45, "kreveti", false));
+            Kolekcije.lstNamestaj.Add(new Namestaj(2, "Krevet No2", "23", 21000, 45, "kreveti", false));
+            Kolekcije.lstNamestaj.Add(new Namestaj(3, "Krevet No1", "34", 25000, 45, "kreveti", false));
+
         }
 
         private void btPrijava_Click(object sender, RoutedEventArgs e)
         {
+
+            bool postojiKorisnik = false;
+            string tipKorisnika = "";
+            foreach (Korisnik k in Kolekcije.lstKorisnici) {
+
+                if (k.KorisnickoIme == txtKorisnikoIme.Text && k.Lozinka == txtLozinka.Text) {
+                    postojiKorisnik = true;
+                    tipKorisnika = k.TipKorisnika;
+                }
+            }
+
+            if (postojiKorisnik)
+            {
+
+                Main proz = new Main(tipKorisnika);
+                proz.ShowDialog();
+            }
+            else {
+                MessageBox.Show("Pogresno korisnicko ime i/ili lozinka!");
+            }
             
-            Main proz = new Main();
-            proz.ShowDialog();
+            //Main proz = new Main("administrator");
+            //Main proz = new Main("prodavac");
+            //proz.ShowDialog();
             
         }
     }

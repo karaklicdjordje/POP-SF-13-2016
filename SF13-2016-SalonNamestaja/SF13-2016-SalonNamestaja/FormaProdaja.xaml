@@ -1,0 +1,28 @@
+﻿<Window x:Class="SF13_2016_SalonNamestaja.FormaProdaja"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SF13_2016_SalonNamestaja"
+        mc:Ignorable="d"
+        Title="Upis prodaje" Height="427.297" Width="413.514" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label x:Name="lbIdNazivNamestaja" Content="Id i Naziv namestaja" HorizontalAlignment="Left" Margin="61,23,0,0" VerticalAlignment="Top"/>
+        <Label Content="Br. komada:" HorizontalAlignment="Left" Margin="61,67,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtBrojKomada" HorizontalAlignment="Left" Height="23" Margin="163,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174"/>
+        <Label Content="Br. racuna:" HorizontalAlignment="Left" Margin="68,109,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtBrojRacuna" HorizontalAlignment="Left" Height="23" Margin="163,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174"/>
+        <Label Content="Ime, prezime kupca:" HorizontalAlignment="Left" Margin="18,146,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtImePrezimeKupca" HorizontalAlignment="Left" Height="23" Margin="163,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174"/>
+        <Label Content="Prevoz:" HorizontalAlignment="Left" Margin="85,194,0,0" VerticalAlignment="Top"/>
+        <Label Content="Montaza:" HorizontalAlignment="Left" Margin="74,232,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chPrevoz" Content="Da" HorizontalAlignment="Left" Margin="163,199,0,0" VerticalAlignment="Top" Checked="chPrevoz_Checked"/>
+        <CheckBox x:Name="chMontaza" Content="Da" HorizontalAlignment="Left" Margin="163,237,0,0" VerticalAlignment="Top" Checked="chMontaza_Checked"/>
+        <TextBox x:Name="txtPrevozCena" HorizontalAlignment="Left" Height="23" Margin="206,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131"/>
+        <TextBox x:Name="txtMontazaCena" HorizontalAlignment="Left" Height="23" Margin="206,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131"/>
+        <Label x:Name="lbUkupnaCena" Content="Ukupna cena: 0 RSD" HorizontalAlignment="Left" Margin="220,294,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btDodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="163,348,0,0" VerticalAlignment="Top" Width="75" Click="btDodaj_Click"/>
+        <Button x:Name="btZatvori" Content="Zatvori" HorizontalAlignment="Left" Margin="309,348,0,0" VerticalAlignment="Top" Width="75" Click="btZatvori_Click"/>
+
+    </Grid>
+</Window>

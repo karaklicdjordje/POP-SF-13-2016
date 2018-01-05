@@ -29,8 +29,9 @@ namespace SF13_2016_SalonNamestaja.Model
         private bool prevoz;
         private bool montaza;
         private double ukupnaCena;
+        private bool obrisan;
 
-        public Prodaja(int id, int idNamestaja, int brKomada, DateTime datumProdaje, string brojRacuna, string imePrezimeKupca, bool prevoz, bool montaza, double ukupnaCena)
+        public Prodaja(int id, int idNamestaja, int brKomada, DateTime datumProdaje, string brojRacuna, string imePrezimeKupca, bool prevoz, bool montaza, double ukupnaCena, bool obrisan)
         {
             this.id = id;
             this.idNamestaja = idNamestaja;
@@ -41,6 +42,7 @@ namespace SF13_2016_SalonNamestaja.Model
             this.prevoz = prevoz;
             this.montaza = montaza;
             this.ukupnaCena = ukupnaCena;
+            this.obrisan = obrisan;
         }
 
         public int Id
@@ -156,6 +158,19 @@ namespace SF13_2016_SalonNamestaja.Model
                 {
                     ukupnaCena = value;
                     OnPropertyChanged("UkupnaCena");
+                }
+            }
+        }
+
+        public bool Obrisan
+        {
+            get { return obrisan; }
+            set
+            {
+                if (value != obrisan)
+                {
+                    obrisan = value;
+                    OnPropertyChanged("Obrisan");
                 }
             }
         }
