@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -62,37 +63,51 @@ namespace SF13_2016_SalonNamestaja
 
         private void btDodaj_Click(object sender, RoutedEventArgs e)
         {
-            if (upisIzmena == "upis") {
-
-                Namestaj namestaj = new Namestaj();
-                namestaj.Id = noviIdNamestaj();
-                namestaj.Naziv = txtNaziv.Text.Trim();
-                namestaj.Sifra = txtSifra.Text.Trim();
-                namestaj.Cena = Convert.ToDouble(txtCena.Text.Trim());
-                namestaj.Kolicina = Convert.ToInt32(txtKolicina.Text.Trim());
-                namestaj.TipNamestaja = comboTipNamestaja.SelectedItem.ToString();
-                Kolekcije.lstNamestaj.Add(namestaj);
-
-            }
-
-            if (upisIzmena == "izmena" && namestaj != null)
+            if (txtNaziv.Text != null && !txtNaziv.Text.Equals("") &&
+                txtSifra.Text != null && !txtSifra.Text.Equals("") &&
+                txtCena.Text != null && !txtCena.Text.Equals("") &&
+                Regex.IsMatch(txtCena.Text, @"^\d+$")&&
+                txtKolicina.Text != null && !txtKolicina.Text.Equals("") &&
+                Regex.IsMatch(txtKolicina.Text, @"^\d+$"))
             {
-
-                foreach (Namestaj nam in Kolekcije.lstNamestaj)
+                if (upisIzmena == "upis")
                 {
-                    if (nam.Id == namestaj.Id) {
 
-                        nam.Naziv = txtNaziv.Text.Trim();
-                        nam.Sifra = txtSifra.Text.Trim();
-                        nam.Cena = Convert.ToDouble(txtCena.Text.Trim());
-                        nam.Kolicina = Convert.ToInt32(txtKolicina.Text.Trim());
-                        nam.TipNamestaja = comboTipNamestaja.SelectedItem.ToString();
+                    Namestaj namestaj = new Namestaj();
+                    namestaj.Id = noviIdNamestaj();
+                    namestaj.Naziv = txtNaziv.Text;
+                    namestaj.Sifra = txtSifra.Text;
+                    namestaj.Cena = Convert.ToDouble(txtCena.Text);
+                    namestaj.Kolicina = Convert.ToInt32(txtKolicina.Text);
+                    namestaj.TipNamestaja = comboTipNamestaja.SelectedItem.ToString();
+                    namestaj.Obrisan = false;
+                    Kolekcije.lstNamestaj.Add(namestaj);
 
+                }
+
+                if (upisIzmena == "izmena" && namestaj != null)
+                {
+
+                    foreach (Namestaj nam in Kolekcije.lstNamestaj)
+                    {
+                        if (nam.Id == namestaj.Id)
+                        {
+
+                            nam.Naziv = txtNaziv.Text;
+                            nam.Sifra = txtSifra.Text;
+                            nam.Cena = Convert.ToDouble(txtCena.Text);
+                            nam.Kolicina = Convert.ToInt32(txtKolicina.Text);
+                            nam.TipNamestaja = comboTipNamestaja.SelectedItem.ToString();
+
+                        }
                     }
                 }
-            }
 
-            this.Close();
+                this.Close();
+            }
+            else {
+                MessageBox.Show("Niste uneli sve podatke ili niste uneli brojeve za cenu i/ili kolicinu!");
+            }
         }
 
         public int noviIdNamestaj()

@@ -26,10 +26,11 @@ namespace SF13_2016_SalonNamestaja.Model
         private string korisnickoIme;
         private string lozinka;
         private string tipKorisnika;
+        private bool obrisan;
 
         public Korisnik() { }
 
-        public Korisnik(int id, string ime, string prezime, string korisnickoIme, string lozinka, string tipKorisnika)
+        public Korisnik(int id, string ime, string prezime, string korisnickoIme, string lozinka, string tipKorisnika, bool obrisan)
         {
             this.id = id;
             this.ime = ime;
@@ -37,6 +38,7 @@ namespace SF13_2016_SalonNamestaja.Model
             this.korisnickoIme = korisnickoIme;
             this.lozinka = lozinka;
             this.tipKorisnika = tipKorisnika;
+            this.obrisan = obrisan;
         }
 
         public int Id
@@ -113,6 +115,19 @@ namespace SF13_2016_SalonNamestaja.Model
                 {
                     tipKorisnika = value;
                     OnPropertyChanged("TipKorisnika");
+                }
+            }
+        }
+
+        public bool Obrisan
+        {
+            get { return obrisan; }
+            set
+            {
+                if (value != obrisan)
+                {
+                    obrisan = value;
+                    OnPropertyChanged("Obrisan");
                 }
             }
         }

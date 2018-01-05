@@ -18,3 +18,5 @@ c:\users\aleksandar\documents\visual studio 2017\Projects\SF13-2016-SalonNamesta
 c:\users\aleksandar\documents\visual studio 2017\Projects\SF13-2016-SalonNamestaja\SF13-2016-SalonNamestaja\obj\Debug\FormaKorisnik.baml
 c:\users\aleksandar\documents\visual studio 2017\Projects\SF13-2016-SalonNamestaja\SF13-2016-SalonNamestaja\obj\Debug\FormaNamestaj.g.cs
 c:\users\aleksandar\documents\visual studio 2017\Projects\SF13-2016-SalonNamestaja\SF13-2016-SalonNamestaja\obj\Debug\FormaNamestaj.baml
+C:\Users\Aleksandar\Documents\Visual Studio 2017\Projects\SF13-2016-SalonNamestaja\SF13-2016-SalonNamestaja\obj\Debug\FormaAkcijskaProdaja.g.cs
+C:\Users\Aleksandar\Documents\Visual Studio 2017\Projects\SF13-2016-SalonNamestaja\SF13-2016-SalonNamestaja\obj\Debug\FormaAkcijskaProdaja.baml

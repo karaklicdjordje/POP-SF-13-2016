@@ -24,14 +24,17 @@ namespace SF13_2016_SalonNamestaja.Model
         private double cenaPopust;
         private DateTime datumPocetka;
         private DateTime datumZavrsetka;
+        private bool obrisan;
 
-        public AkcijskaProdaja(int id, int idNamestaja, double cenaPopust, DateTime datumPocetka, DateTime datumZavrsetka)
+        public AkcijskaProdaja() { }
+        public AkcijskaProdaja(int id, int idNamestaja, double cenaPopust, DateTime datumPocetka, DateTime datumZavrsetka, bool obrisan)
         {
             this.id = id;
             this.idNamestaja = idNamestaja;
             this.cenaPopust = cenaPopust;
             this.datumPocetka = datumPocetka;
             this.datumZavrsetka = datumZavrsetka;
+            this.obrisan = obrisan;
         }
 
         public int Id
@@ -95,6 +98,19 @@ namespace SF13_2016_SalonNamestaja.Model
                 {
                     datumZavrsetka = value;
                     OnPropertyChanged("DatumZavrsetka");
+                }
+            }
+        }
+
+        public bool Obrisan
+        {
+            get { return obrisan; }
+            set
+            {
+                if (value != obrisan)
+                {
+                    obrisan = value;
+                    OnPropertyChanged("Obrisan");
                 }
             }
         }

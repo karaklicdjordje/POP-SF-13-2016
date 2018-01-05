@@ -61,31 +61,45 @@ namespace SF13_2016_SalonNamestaja
 
         private void btDodaj_Click(object sender, RoutedEventArgs e)
         {
-            if (upisIzmena == "upis") {
-                Korisnik korisnik = new Korisnik();
-                korisnik.Id = noviIdKorisnik();
-                korisnik.Ime = txtIme.Text.Trim();
-                korisnik.Prezime = txtPrezime.Text.Trim();
-                korisnik.KorisnickoIme = txtKorisnickoIme.Text.Trim();
-                korisnik.Lozinka = txtLozinka.Text.Trim();
-                korisnik.TipKorisnika = comboTipKorisnika.SelectedItem.ToString();
-                Kolekcije.lstKorisnici.Add(korisnik);
-            }
-            if (upisIzmena == "izmena" && korisnik != null) {
+            if (txtIme.Text != null && !txtIme.Text.Equals("") &&
+                txtPrezime.Text != null && !txtPrezime.Text.Equals("") &&
+                txtKorisnickoIme.Text != null && !txtKorisnickoIme.Text.Equals("") &&
+                txtLozinka.Text != null && !txtLozinka.Text.Equals(""))
+            {
+                if (upisIzmena == "upis")
+                {
+                    Korisnik korisnik = new Korisnik();
+                    korisnik.Id = noviIdKorisnik();
+                    korisnik.Ime = txtIme.Text;
+                    korisnik.Prezime = txtPrezime.Text;
+                    korisnik.KorisnickoIme = txtKorisnickoIme.Text;
+                    korisnik.Lozinka = txtLozinka.Text;
+                    korisnik.TipKorisnika = comboTipKorisnika.SelectedItem.ToString();
+                    korisnik.Obrisan = false;
+                    Kolekcije.lstKorisnici.Add(korisnik);
+                }
+                if (upisIzmena == "izmena" && korisnik != null)
+                {
 
-                foreach (Korisnik kor in Kolekcije.lstKorisnici) {
-                    if (kor.Id == korisnik.Id) {
+                    foreach (Korisnik kor in Kolekcije.lstKorisnici)
+                    {
+                        if (kor.Id == korisnik.Id)
+                        {
 
-                        kor.Ime = txtIme.Text.Trim();
-                        kor.Prezime = txtPrezime.Text.Trim();
-                        kor.KorisnickoIme = txtKorisnickoIme.Text.Trim();
-                        kor.Lozinka = txtLozinka.Text.Trim();
-                        kor.TipKorisnika = comboTipKorisnika.SelectedItem.ToString();
+                            kor.Ime = txtIme.Text;
+                            kor.Prezime = txtPrezime.Text;
+                            kor.KorisnickoIme = txtKorisnickoIme.Text;
+                            kor.Lozinka = txtLozinka.Text;
+                            kor.TipKorisnika = comboTipKorisnika.SelectedItem.ToString();
+                        }
                     }
                 }
-            }
 
-            this.Close();
+                this.Close();
+            }
+            else {
+                MessageBox.Show("Niste uneli sve podatke!");
+            }
         }
 
         public int noviIdKorisnik()

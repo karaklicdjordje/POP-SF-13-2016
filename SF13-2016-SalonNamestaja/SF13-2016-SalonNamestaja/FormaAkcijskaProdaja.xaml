@@ -1,0 +1,22 @@
+﻿<Window x:Class="SF13_2016_SalonNamestaja.FormaAkcijskaProdaja"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SF13_2016_SalonNamestaja"
+        mc:Ignorable="d"
+        Title="Upis/Izmena akcijske prodaje" Height="321.24" Width="417.806" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="Namestaj Id: " HorizontalAlignment="Left" Margin="71,45,0,0" VerticalAlignment="Top"/>
+        <Label Content="Cena na akciji:" HorizontalAlignment="Left" Margin="65,80,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtAkcijskaCena" HorizontalAlignment="Left" Height="23" Margin="158,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
+        <ComboBox x:Name="comboNamestajId" HorizontalAlignment="Left" Margin="158,49,0,0" VerticalAlignment="Top" Width="146" SelectedIndex="0"/>
+        <Label Content="Datum pocetka:" HorizontalAlignment="Left" Margin="56,117,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dateDatumPocetka" HorizontalAlignment="Left" Margin="158,119,0,0" VerticalAlignment="Top" Width="146"/>
+        <DatePicker x:Name="dateDatumZavrsetka" HorizontalAlignment="Left" Margin="158,158,0,0" VerticalAlignment="Top" Width="146"/>
+        <Label Content="Datum zavrsetka:" HorizontalAlignment="Left" Margin="49,156,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="buttonDodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="158,224,0,0" VerticalAlignment="Top" Width="75" Click="buttonDodaj_Click"/>
+        <Button x:Name="buttonZatvori" Content="Zatvori" HorizontalAlignment="Left" Margin="296,224,0,0" VerticalAlignment="Top" Width="76" Click="buttonZatvori_Click"/>
+
+    </Grid>
+</Window>

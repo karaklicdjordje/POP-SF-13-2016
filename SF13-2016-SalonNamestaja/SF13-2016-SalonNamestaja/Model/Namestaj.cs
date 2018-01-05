@@ -26,10 +26,11 @@ namespace SF13_2016_SalonNamestaja.Model
         private double cena;
         private int kolicina;
         private string tipNamestaja;
+        private bool obrisan;
 
         public Namestaj() { }
 
-        public Namestaj(int id, string naziv, string sifra, double cena, int kolicina, string tipNamestaja)
+        public Namestaj(int id, string naziv, string sifra, double cena, int kolicina, string tipNamestaja, bool obrisan)
         {
             this.id = id;
             this.naziv = naziv;
@@ -37,6 +38,7 @@ namespace SF13_2016_SalonNamestaja.Model
             this.cena = cena;
             this.kolicina = kolicina;
             this.tipNamestaja = tipNamestaja;
+            this.obrisan = obrisan;
         }
 
         public int Id
@@ -112,6 +114,19 @@ namespace SF13_2016_SalonNamestaja.Model
                 {
                     tipNamestaja = value;
                     OnPropertyChanged("TipNamestaja");
+                }
+            }
+        }
+
+        public bool Obrisan
+        {
+            get { return obrisan; }
+            set
+            {
+                if (value != obrisan)
+                {
+                    obrisan = value;
+                    OnPropertyChanged("Obrisan");
                 }
             }
         }

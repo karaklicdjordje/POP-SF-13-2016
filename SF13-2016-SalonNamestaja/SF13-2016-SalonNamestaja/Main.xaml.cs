@@ -29,7 +29,8 @@ namespace SF13_2016_SalonNamestaja
             comboPrikazTabela.Items.Add("Akcijske prodaje");
             comboPrikazTabela.Items.Add("Korisnici");
 
-            Kolekcije.lstKorisnici.Add(new Korisnik(1, "Petar", "Petrovic", "petar", "petrovic", "prodavac"));
+            Kolekcije.lstKorisnici.Add(new Korisnik(1, "Petar", "Petrovic", "petar", "petrovic", "prodavac", false));
+            Kolekcije.lstNamestaj.Add(new Namestaj(1, "Krevet No3", "SDSA432", 23444, 45, "kreveti", false));
 
             dataGrid.ItemsSource = Kolekcije.lstProdaja;
         }
@@ -44,6 +45,12 @@ namespace SF13_2016_SalonNamestaja
             if (comboPrikazTabela.SelectedItem.ToString() == "Namestaj")
             {
                 FormaNamestaj forma = new FormaNamestaj("upis", null);
+                forma.ShowDialog();
+            }
+
+            if (comboPrikazTabela.SelectedItem.ToString() == "Akcijske prodaje")
+            {
+                FormaAkcijskaProdaja forma = new FormaAkcijskaProdaja("upis", null);
                 forma.ShowDialog();
             }
         }
@@ -81,6 +88,22 @@ namespace SF13_2016_SalonNamestaja
 
                 }
             }
+
+            if (comboPrikazTabela.SelectedItem.ToString() == "Akcijske prodaje")
+            {
+                if (Kolekcije.lstAkcijskaProdaja.Count > 0 && dataGrid.SelectedIndex != -1)
+                {
+
+                    AkcijskaProdaja akcProd = (AkcijskaProdaja)dataGrid.SelectedItem;
+
+                    FormaAkcijskaProdaja izmenaAkcProd = new FormaAkcijskaProdaja("izmena", akcProd);
+                    izmenaAkcProd.Owner = this;
+                    izmenaAkcProd.ShowDialog();
+
+                    dataGrid.Items.Refresh();
+
+                }
+            }
         }
 
         private void btBrisanje_Click(object sender, RoutedEventArgs e)
@@ -92,7 +115,7 @@ namespace SF13_2016_SalonNamestaja
                     Korisnik korisnik = (Korisnik)dataGrid.SelectedItem;
                     for (int i = 0; i < Kolekcije.lstKorisnici.Count; i++) {
                         if (Kolekcije.lstKorisnici.ElementAt(i).Id == korisnik.Id)
-                            Kolekcije.lstKorisnici.RemoveAt(i);
+                            Kolekcije.lstKorisnici.ElementAt(i).Obrisan = true;
                     }
 
                     dataGrid.Items.Refresh();
@@ -107,7 +130,22 @@ namespace SF13_2016_SalonNamestaja
                     for (int i = 0; i < Kolekcije.lstNamestaj.Count; i++)
                     {
                         if (Kolekcije.lstNamestaj.ElementAt(i).Id == namestaj.Id)
-                            Kolekcije.lstNamestaj.RemoveAt(i);
+                            Kolekcije.lstNamestaj.ElementAt(i).Obrisan = true;
+                    }
+
+                    dataGrid.Items.Refresh();
+                }
+            }
+
+            if (comboPrikazTabela.SelectedItem.ToString() == "Akcijske prodaje")
+            {
+                if (Kolekcije.lstAkcijskaProdaja.Count > 0 && dataGrid.SelectedIndex != -1)
+                {
+                    AkcijskaProdaja akcProd = (AkcijskaProdaja)dataGrid.SelectedItem;
+                    for (int i = 0; i < Kolekcije.lstAkcijskaProdaja.Count; i++)
+                    {
+                        if (Kolekcije.lstAkcijskaProdaja.ElementAt(i).Id == akcProd.Id)
+                            Kolekcije.lstAkcijskaProdaja.ElementAt(i).Obrisan = true;
                     }
 
                     dataGrid.Items.Refresh();
