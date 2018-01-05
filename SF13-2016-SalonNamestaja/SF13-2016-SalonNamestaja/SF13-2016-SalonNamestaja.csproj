@@ -91,7 +91,7 @@
   <ItemGroup>
     <Compile Include="Model\AkcijskaProdaja.cs" />
     <Compile Include="Model\Korisnik.cs" />
-    <Compile Include="Model\ModifikacijePodataka.cs" />
+    <Compile Include="Model\Kolekcije.cs" />
     <Compile Include="Model\Namestaj.cs" />
     <Compile Include="Model\Prodaja.cs" />
     <Compile Include="Model\Salon.cs" />

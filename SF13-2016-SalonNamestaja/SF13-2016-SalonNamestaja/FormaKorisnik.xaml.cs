@@ -63,17 +63,17 @@ namespace SF13_2016_SalonNamestaja
         {
             if (upisIzmena == "upis") {
                 Korisnik korisnik = new Korisnik();
-                korisnik.Id = ModifikacijePodataka.noviIdKorisnik();
+                korisnik.Id = noviIdKorisnik();
                 korisnik.Ime = txtIme.Text.Trim();
                 korisnik.Prezime = txtPrezime.Text.Trim();
                 korisnik.KorisnickoIme = txtKorisnickoIme.Text.Trim();
                 korisnik.Lozinka = txtLozinka.Text.Trim();
                 korisnik.TipKorisnika = comboTipKorisnika.SelectedItem.ToString();
-                ModifikacijePodataka.lstKorisnici.Add(korisnik);
+                Kolekcije.lstKorisnici.Add(korisnik);
             }
             if (upisIzmena == "izmena" && korisnik != null) {
 
-                foreach (Korisnik kor in ModifikacijePodataka.lstKorisnici) {
+                foreach (Korisnik kor in Kolekcije.lstKorisnici) {
                     if (kor.Id == korisnik.Id) {
 
                         kor.Ime = txtIme.Text.Trim();
@@ -86,6 +86,20 @@ namespace SF13_2016_SalonNamestaja
             }
 
             this.Close();
+        }
+
+        public int noviIdKorisnik()
+        {
+
+            int max = 0;
+            foreach (Korisnik korisnik in Kolekcije.lstKorisnici)
+            {
+                if (korisnik.Id > max)
+                    max = korisnik.Id;
+            }
+            max++;
+
+            return max;
         }
     }
 }

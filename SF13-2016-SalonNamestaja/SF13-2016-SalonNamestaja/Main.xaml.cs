@@ -29,9 +29,9 @@ namespace SF13_2016_SalonNamestaja
             comboPrikazTabela.Items.Add("Akcijske prodaje");
             comboPrikazTabela.Items.Add("Korisnici");
 
-            ModifikacijePodataka.lstKorisnici.Add(new Korisnik(1, "Petar", "Petrovic", "petar", "petrovic", "prodavac"));
+            Kolekcije.lstKorisnici.Add(new Korisnik(1, "Petar", "Petrovic", "petar", "petrovic", "prodavac"));
 
-            dataGrid.ItemsSource = ModifikacijePodataka.lstProdaja;
+            dataGrid.ItemsSource = Kolekcije.lstProdaja;
         }
 
         private void btUpis_Click(object sender, RoutedEventArgs e)
@@ -52,7 +52,7 @@ namespace SF13_2016_SalonNamestaja
         {
             if (comboPrikazTabela.SelectedItem.ToString() == "Korisnici")
             {
-                if (ModifikacijePodataka.lstKorisnici.Count > 0 && dataGrid.SelectedIndex != -1)
+                if (Kolekcije.lstKorisnici.Count > 0 && dataGrid.SelectedIndex != -1)
                 {
 
                     Korisnik korisnik = (Korisnik)dataGrid.SelectedItem;
@@ -68,7 +68,7 @@ namespace SF13_2016_SalonNamestaja
 
             if (comboPrikazTabela.SelectedItem.ToString() == "Namestaj")
             {
-                if (ModifikacijePodataka.lstNamestaj.Count > 0 && dataGrid.SelectedIndex != -1)
+                if (Kolekcije.lstNamestaj.Count > 0 && dataGrid.SelectedIndex != -1)
                 {
 
                     Namestaj namestaj = (Namestaj)dataGrid.SelectedItem;
@@ -87,12 +87,12 @@ namespace SF13_2016_SalonNamestaja
         {
             if (comboPrikazTabela.SelectedItem.ToString() == "Korisnici")
             {
-                if (ModifikacijePodataka.lstKorisnici.Count > 0 && dataGrid.SelectedIndex != -1)
+                if (Kolekcije.lstKorisnici.Count > 0 && dataGrid.SelectedIndex != -1)
                 {
                     Korisnik korisnik = (Korisnik)dataGrid.SelectedItem;
-                    for (int i = 0; i < ModifikacijePodataka.lstKorisnici.Count; i++) {
-                        if (ModifikacijePodataka.lstKorisnici.ElementAt(i).Id == korisnik.Id)
-                            ModifikacijePodataka.lstKorisnici.RemoveAt(i);
+                    for (int i = 0; i < Kolekcije.lstKorisnici.Count; i++) {
+                        if (Kolekcije.lstKorisnici.ElementAt(i).Id == korisnik.Id)
+                            Kolekcije.lstKorisnici.RemoveAt(i);
                     }
 
                     dataGrid.Items.Refresh();
@@ -101,13 +101,13 @@ namespace SF13_2016_SalonNamestaja
 
             if (comboPrikazTabela.SelectedItem.ToString() == "Namestaj")
             {
-                if (ModifikacijePodataka.lstNamestaj.Count > 0 && dataGrid.SelectedIndex != -1)
+                if (Kolekcije.lstNamestaj.Count > 0 && dataGrid.SelectedIndex != -1)
                 {
                     Namestaj namestaj = (Namestaj)dataGrid.SelectedItem;
-                    for (int i = 0; i < ModifikacijePodataka.lstNamestaj.Count; i++)
+                    for (int i = 0; i < Kolekcije.lstNamestaj.Count; i++)
                     {
-                        if (ModifikacijePodataka.lstNamestaj.ElementAt(i).Id == namestaj.Id)
-                            ModifikacijePodataka.lstNamestaj.RemoveAt(i);
+                        if (Kolekcije.lstNamestaj.ElementAt(i).Id == namestaj.Id)
+                            Kolekcije.lstNamestaj.RemoveAt(i);
                     }
 
                     dataGrid.Items.Refresh();
@@ -119,22 +119,22 @@ namespace SF13_2016_SalonNamestaja
         {
             if (comboPrikazTabela.SelectedItem.ToString() == "Prodaja")
             {
-                dataGrid.ItemsSource = ModifikacijePodataka.lstProdaja;
+                dataGrid.ItemsSource = Kolekcije.lstProdaja;
                 dataGrid.Items.Refresh();
             }
             if (comboPrikazTabela.SelectedItem.ToString() == "Namestaj")
             {
-                dataGrid.ItemsSource = ModifikacijePodataka.lstNamestaj;
+                dataGrid.ItemsSource = Kolekcije.lstNamestaj;
                 dataGrid.Items.Refresh();
             }
             if (comboPrikazTabela.SelectedItem.ToString() == "Akcijske prodaje")
             {
-                dataGrid.ItemsSource = ModifikacijePodataka.lstAkcijskaProdaja;
+                dataGrid.ItemsSource = Kolekcije.lstAkcijskaProdaja;
                 dataGrid.Items.Refresh();
             }
             if (comboPrikazTabela.SelectedItem.ToString() == "Korisnici")
             {
-                dataGrid.ItemsSource = ModifikacijePodataka.lstKorisnici;
+                dataGrid.ItemsSource = Kolekcije.lstKorisnici;
                 dataGrid.Items.Refresh();
             }
         }

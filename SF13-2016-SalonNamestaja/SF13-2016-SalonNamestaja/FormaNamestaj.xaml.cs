@@ -65,20 +65,20 @@ namespace SF13_2016_SalonNamestaja
             if (upisIzmena == "upis") {
 
                 Namestaj namestaj = new Namestaj();
-                namestaj.Id = ModifikacijePodataka.noviIdNamestaj();
+                namestaj.Id = noviIdNamestaj();
                 namestaj.Naziv = txtNaziv.Text.Trim();
                 namestaj.Sifra = txtSifra.Text.Trim();
                 namestaj.Cena = Convert.ToDouble(txtCena.Text.Trim());
                 namestaj.Kolicina = Convert.ToInt32(txtKolicina.Text.Trim());
                 namestaj.TipNamestaja = comboTipNamestaja.SelectedItem.ToString();
-                ModifikacijePodataka.lstNamestaj.Add(namestaj);
+                Kolekcije.lstNamestaj.Add(namestaj);
 
             }
 
             if (upisIzmena == "izmena" && namestaj != null)
             {
 
-                foreach (Namestaj nam in ModifikacijePodataka.lstNamestaj)
+                foreach (Namestaj nam in Kolekcije.lstNamestaj)
                 {
                     if (nam.Id == namestaj.Id) {
 
@@ -93,6 +93,20 @@ namespace SF13_2016_SalonNamestaja
             }
 
             this.Close();
+        }
+
+        public int noviIdNamestaj()
+        {
+
+            int max = 0;
+            foreach (Namestaj namestaj in Kolekcije.lstNamestaj)
+            {
+                if (namestaj.Id > max)
+                    max = namestaj.Id;
+            }
+            max++;
+
+            return max;
         }
     }
 }
