@@ -130,6 +130,20 @@ namespace SF13_2016_SalonNamestaja
                 Prodaja novaProdaja = new Prodaja(id, idNamestaja, brKomada, datumProdaje, brojRacuna, imePrezimeKupca, prevoz, montaza, ukupnaCena, obrisan);
                 Kolekcije.lstProdaja.Add(novaProdaja);
 
+                UpisUBazu.Instance.upisiRedPodataka(
+                    "insert into Prodaja(id,idNamestaja,brKomada,datumProdaje,brojRacuna," +
+                    "imePrezimeKupca,prevoz,montaza,ukupnaCena,obrisan) values('"
+                    + id + "','"
+                    + idNamestaja + "','"
+                    + brKomada + "','"
+                    + datumProdaje + "','"
+                    + brojRacuna + "','"
+                    + imePrezimeKupca + "','"
+                    + prevoz + "','"
+                    + montaza + "','"
+                    + ukupnaCena + "','"
+                    + obrisan + "');");
+
             }
             else {
                 MessageBox.Show("Neke od podataka niste pravilno uneli!");

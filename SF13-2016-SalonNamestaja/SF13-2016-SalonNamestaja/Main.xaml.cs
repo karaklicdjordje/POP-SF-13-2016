@@ -152,7 +152,14 @@ namespace SF13_2016_SalonNamestaja
                     for (int i = 0; i < Kolekcije.lstNamestaj.Count; i++)
                     {
                         if (Kolekcije.lstNamestaj.ElementAt(i).Id == namestaj.Id)
+                        {
                             Kolekcije.lstNamestaj.ElementAt(i).Obrisan = true;
+
+                            UpisUBazu.Instance.upisiRedPodataka(
+                            "update Namestaj set obrisan='true' where id='" + 
+                            Kolekcije.lstNamestaj.ElementAt(i).Id + "';");
+
+                        }
                     }
 
                     dataGrid.Items.Refresh();
@@ -167,7 +174,14 @@ namespace SF13_2016_SalonNamestaja
                     for (int i = 0; i < Kolekcije.lstAkcijskaProdaja.Count; i++)
                     {
                         if (Kolekcije.lstAkcijskaProdaja.ElementAt(i).Id == akcProd.Id)
+                        {
                             Kolekcije.lstAkcijskaProdaja.ElementAt(i).Obrisan = true;
+
+                            UpisUBazu.Instance.upisiRedPodataka(
+                            "update AkcijskaProdaja set obrisan='true' where id='" +
+                            Kolekcije.lstAkcijskaProdaja.ElementAt(i).Id + "';");
+
+                        }
                     }
 
                     dataGrid.Items.Refresh();

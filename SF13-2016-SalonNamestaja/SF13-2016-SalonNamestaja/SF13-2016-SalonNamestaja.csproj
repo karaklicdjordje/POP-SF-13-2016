@@ -109,6 +109,7 @@
     <Compile Include="Model\Namestaj.cs" />
     <Compile Include="Model\Prodaja.cs" />
     <Compile Include="Model\Salon.cs" />
+    <Compile Include="Model\UpisUBazu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

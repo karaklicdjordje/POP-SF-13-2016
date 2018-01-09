@@ -49,7 +49,18 @@ namespace SF13_2016_SalonNamestaja
 
             if (postojiKorisnik)
             {
+                if (chCitajIzBaze.IsChecked == true) {
 
+                    Kolekcije.lstNamestaj.Clear();
+                    Kolekcije.lstNamestaj = UpisUBazu.Instance.listaNamestajaIzBaze();
+
+                    Kolekcije.lstAkcijskaProdaja.Clear();
+                    Kolekcije.lstAkcijskaProdaja = UpisUBazu.Instance.listaAkcijskihProdajaIzBaze();
+
+                    Kolekcije.lstProdaja.Clear();
+                    Kolekcije.lstProdaja = UpisUBazu.Instance.listaProdajaIzBaze();
+
+                }
                 Main proz = new Main(tipKorisnika);
                 proz.ShowDialog();
             }

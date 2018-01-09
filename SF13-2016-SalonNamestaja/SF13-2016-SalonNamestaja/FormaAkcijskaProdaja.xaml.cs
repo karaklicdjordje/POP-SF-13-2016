@@ -76,6 +76,15 @@ namespace SF13_2016_SalonNamestaja
                     novaAkcProd.Obrisan = false;
                     Kolekcije.lstAkcijskaProdaja.Add(novaAkcProd);
 
+                    UpisUBazu.Instance.upisiRedPodataka(
+                       "insert into AkcijskaProdaja(id,idNamestaja,cenaPopust,datumPocetka,datumZavrsetka,obrisan) values('"
+                       + novaAkcProd.Id + "','"
+                       + novaAkcProd.IdNamestaja + "','"
+                       + novaAkcProd.CenaPopust + "','"
+                       + novaAkcProd.DatumPocetka + "','"
+                       + novaAkcProd.DatumZavrsetka + "','"
+                       + novaAkcProd.Obrisan + "');");
+
                 }
                 else if (upisIzmena == "izmena")
                 {
@@ -87,6 +96,13 @@ namespace SF13_2016_SalonNamestaja
                             akc.CenaPopust = Convert.ToDouble(txtAkcijskaCena.Text);
                             akc.DatumPocetka = dateDatumPocetka.SelectedDate.Value;
                             akc.DatumZavrsetka = dateDatumZavrsetka.SelectedDate.Value;
+
+                            UpisUBazu.Instance.upisiRedPodataka(
+                            "update AkcijskaProdaja set idNamestaja='"
+                            + akc.IdNamestaja + "', cenaPopust='"
+                            + akc.CenaPopust + "', datumPocetka='"
+                            + akc.DatumPocetka + "', datumZavrsetka='"
+                            + akc.DatumZavrsetka + "'where id='" + akc.Id + "';");
 
                         }
                     }

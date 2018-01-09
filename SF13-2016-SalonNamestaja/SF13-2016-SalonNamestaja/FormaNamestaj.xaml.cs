@@ -83,6 +83,16 @@ namespace SF13_2016_SalonNamestaja
                     namestaj.Obrisan = false;
                     Kolekcije.lstNamestaj.Add(namestaj);
 
+                    UpisUBazu.Instance.upisiRedPodataka(
+                    "insert into Namestaj(id,naziv,sifra,cena,kolicina,tipNamestaja,obrisan) values('"
+                    + namestaj.Id + "','"
+                    + namestaj.Naziv + "','"
+                    + namestaj.Sifra + "','"
+                    + namestaj.Cena + "','"
+                    + namestaj.Kolicina + "','"
+                    + namestaj.TipNamestaja + "','"
+                    + namestaj.Obrisan + "');");
+
                 }
 
                 if (upisIzmena == "izmena" && namestaj != null)
@@ -98,6 +108,14 @@ namespace SF13_2016_SalonNamestaja
                             nam.Cena = Convert.ToDouble(txtCena.Text);
                             nam.Kolicina = Convert.ToInt32(txtKolicina.Text);
                             nam.TipNamestaja = comboTipNamestaja.SelectedItem.ToString();
+
+                            UpisUBazu.Instance.upisiRedPodataka(
+                            "update Namestaj set naziv='"
+                            + nam.Naziv + "', sifra='"
+                            + nam.Sifra + "', cena='"
+                            + nam.Cena + "', kolicina='"
+                            + nam.Kolicina +  "', tipNamestaja='"
+                            + nam.TipNamestaja + "'where id='" + nam.Id + "';");
 
                         }
                     }
