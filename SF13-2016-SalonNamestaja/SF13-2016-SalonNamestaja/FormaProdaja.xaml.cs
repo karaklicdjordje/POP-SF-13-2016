@@ -76,6 +76,13 @@ namespace SF13_2016_SalonNamestaja
                  string brojRacuna=txtBrojRacuna.Text;
                  string imePrezimeKupca=txtImePrezimeKupca.Text;
 
+                bool dovoljnaKolicina = true;
+                foreach (Namestaj nam in Kolekcije.lstNamestaj) {
+                    if (nam.Id == idNamestaja && brKomada > nam.Kolicina)
+                        dovoljnaKolicina = false;
+
+                }
+
                  bool prevoz=false;
                  bool montaza=false;
                  double ukupnaCena=0;
@@ -118,7 +125,7 @@ namespace SF13_2016_SalonNamestaja
 
                 foreach (AkcijskaProdaja akc in Kolekcije.lstAkcijskaProdaja) {
                     if (akc.IdNamestaja == namestajProdaja.Id)
-                        cenaArtikla = akc.CenaPopust;
+                        cenaArtikla = ((akc.CenaPopust/100)* namestajProdaja.Cena) + namestajProdaja.Cena;
                 }
                 if (cenaArtikla == 0)
                     cenaArtikla = namestajProdaja.Cena;
@@ -127,22 +134,40 @@ namespace SF13_2016_SalonNamestaja
                 lbUkupnaCena.Content = "Ukupna cena: " + ukupnaCena;
 
 
-                Prodaja novaProdaja = new Prodaja(id, idNamestaja, brKomada, datumProdaje, brojRacuna, imePrezimeKupca, prevoz, montaza, ukupnaCena, obrisan);
-                Kolekcije.lstProdaja.Add(novaProdaja);
+                if (dovoljnaKolicina)
+                {
 
-                UpisUBazu.Instance.upisiRedPodataka(
-                    "insert into Prodaja(id,idNamestaja,brKomada,datumProdaje,brojRacuna," +
-                    "imePrezimeKupca,prevoz,montaza,ukupnaCena,obrisan) values('"
-                    + id + "','"
-                    + idNamestaja + "','"
-                    + brKomada + "','"
-                    + datumProdaje + "','"
-                    + brojRacuna + "','"
-                    + imePrezimeKupca + "','"
-                    + prevoz + "','"
-                    + montaza + "','"
-                    + ukupnaCena + "','"
-                    + obrisan + "');");
+                    foreach (Namestaj namSmanjiLager in Kolekcije.lstNamestaj) {
+                        if (namSmanjiLager.Id == idNamestaja)
+                        {
+                            namSmanjiLager.Kolicina -= brKomada;
+
+                            UpisUBazu.Instance.upisiRedPodataka(
+                            "update Namestaj set kolicina='"+ namSmanjiLager.Kolicina + 
+                            "' where id='" + namSmanjiLager.Id + "';");
+                        }
+                    }
+
+                    Prodaja novaProdaja = new Prodaja(id, idNamestaja, brKomada, datumProdaje, brojRacuna, imePrezimeKupca, prevoz, montaza, ukupnaCena, obrisan);
+                    Kolekcije.lstProdaja.Add(novaProdaja);
+
+                    UpisUBazu.Instance.upisiRedPodataka(
+                        "insert into Prodaja(id,idNamestaja,brKomada,datumProdaje,brojRacuna," +
+                        "imePrezimeKupca,prevoz,montaza,ukupnaCena,obrisan) values('"
+                        + id + "','"
+                        + idNamestaja + "','"
+                        + brKomada + "','"
+                        + datumProdaje + "','"
+                        + brojRacuna + "','"
+                        + imePrezimeKupca + "','"
+                        + prevoz + "','"
+                        + montaza + "','"
+                        + ukupnaCena + "','"
+                        + obrisan + "');");
+                }
+                else {
+                    MessageBox.Show("Nema dovoljna kolicina namestaja u magacinu!");
+                }
 
             }
             else {

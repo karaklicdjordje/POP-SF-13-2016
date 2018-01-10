@@ -44,6 +44,9 @@ namespace SF13_2016_SalonNamestaja
                 if (k.KorisnickoIme == txtKorisnikoIme.Text && k.Lozinka == txtLozinka.Text) {
                     postojiKorisnik = true;
                     tipKorisnika = k.TipKorisnika;
+
+                    if (k.Obrisan)
+                        postojiKorisnik = false;
                 }
             }
 

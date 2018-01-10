@@ -33,7 +33,8 @@ namespace SF13_2016_SalonNamestaja
 
                 foreach (Namestaj nam in Kolekcije.lstNamestaj)
                 {
-                    comboNamestajId.Items.Add(nam.Id);
+                    if(!nam.Obrisan)
+                        comboNamestajId.Items.Add(nam.Id);
                 }
             }
 
@@ -57,7 +58,7 @@ namespace SF13_2016_SalonNamestaja
 
         private void buttonDodaj_Click(object sender, RoutedEventArgs e)
         {
-
+            
             if (comboNamestajId.SelectedIndex > -1 &&
                 txtAkcijskaCena.Text.Trim() != null && !txtAkcijskaCena.Text.Trim().Equals("") &&
                 Regex.IsMatch(txtAkcijskaCena.Text.Trim(), @"^\d+$") &&
@@ -65,7 +66,11 @@ namespace SF13_2016_SalonNamestaja
                 dateDatumZavrsetka.SelectedDate != null)
             {
 
-                if (upisIzmena == "upis")
+                if (Convert.ToInt32(txtAkcijskaCena.Text) > 99 || Convert.ToInt32(txtAkcijskaCena.Text) < 1) {
+                    MessageBox.Show("Popust mora biti 1-99%!");
+                }
+
+                else if (upisIzmena == "upis")
                 {
                     AkcijskaProdaja novaAkcProd = new AkcijskaProdaja();
                     novaAkcProd.Id = noviIdAkcijskaProdaja();
@@ -84,6 +89,8 @@ namespace SF13_2016_SalonNamestaja
                        + novaAkcProd.DatumPocetka + "','"
                        + novaAkcProd.DatumZavrsetka + "','"
                        + novaAkcProd.Obrisan + "');");
+
+                    this.Close();
 
                 }
                 else if (upisIzmena == "izmena")
@@ -106,9 +113,10 @@ namespace SF13_2016_SalonNamestaja
 
                         }
                     }
+
+                    this.Close();
                 }
 
-                this.Close();
             }
             else {
                 MessageBox.Show("Niste uneli/odabrali neki od podataka ili niste upisali broj u predvidjeno polje!");

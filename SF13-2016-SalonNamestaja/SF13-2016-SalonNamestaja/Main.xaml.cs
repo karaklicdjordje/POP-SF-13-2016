@@ -284,11 +284,22 @@ namespace SF13_2016_SalonNamestaja
 
                 Namestaj namestaj = (Namestaj)dataGrid.SelectedItem;
 
-                FormaProdaja frm = new FormaProdaja(namestaj);
-                //izmenaNamestaj.Owner = this;
-                frm.ShowDialog();
+                bool obrisanNamestaj = false;
+                foreach (Namestaj nam in Kolekcije.lstNamestaj) {
+                    if (nam.Id == namestaj.Id && nam.Obrisan)
+                        obrisanNamestaj = true;
+                }
+                if (!obrisanNamestaj)
+                {
+                    FormaProdaja frm = new FormaProdaja(namestaj);
+                    //izmenaNamestaj.Owner = this;
+                    frm.ShowDialog();
 
-                //dataGrid.Items.Refresh();
+                    //dataGrid.Items.Refresh();
+                }
+                else {
+                    MessageBox.Show("Ne mozete uneti prodaju za obrisan namestaj!");
+                }
 
             }
 

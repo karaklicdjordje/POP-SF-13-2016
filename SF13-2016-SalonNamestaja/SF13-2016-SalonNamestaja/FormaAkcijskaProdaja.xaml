@@ -8,7 +8,7 @@
         Title="Upis/Izmena akcijske prodaje" Height="321.24" Width="417.806" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Namestaj Id: " HorizontalAlignment="Left" Margin="71,45,0,0" VerticalAlignment="Top"/>
-        <Label Content="Cena na akciji:" HorizontalAlignment="Left" Margin="65,80,0,0" VerticalAlignment="Top"/>
+        <Label Content="Popust: " HorizontalAlignment="Left" Margin="97,80,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtAkcijskaCena" HorizontalAlignment="Left" Height="23" Margin="158,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
         <ComboBox x:Name="comboNamestajId" HorizontalAlignment="Left" Margin="158,49,0,0" VerticalAlignment="Top" Width="146" SelectedIndex="0"/>
         <Label Content="Datum pocetka:" HorizontalAlignment="Left" Margin="56,117,0,0" VerticalAlignment="Top"/>
